@@ -9,7 +9,7 @@ import { StackNavigator } from 'react-navigation';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="auth" hideNavBar={true}>
+      <Scene key="auth">
         <Scene key="login" component={Login}  hideNavBar={true}/>
       </Scene>
 

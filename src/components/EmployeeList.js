@@ -38,7 +38,7 @@ class EmployeeList extends Component {
 
   render() {
     return (
-      <ListView
+      <ListView style={{ paddingTop: 65 }}
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}
