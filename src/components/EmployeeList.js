@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, LayoutAnimation } from 'react-native';
+import { Actions } from 'react-native-router-flux'
+import { ListView, LayoutAnimation, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import { employeesFetch } from '../actions';
 import ListItem from './ListItem';
 
@@ -38,14 +39,31 @@ class EmployeeList extends Component {
 
   render() {
     return (
-      <ListView style={{ paddingTop: 65 }}
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <View>
+        <ListView style={{ paddingTop: 65 }}
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+        <TouchableOpacity style={styles.buttonContainer} onPress = {() => Actions.employeeCreate()}>
+          <Text style={styles.buttonText}>Add</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: '#2980b6',
+    paddingVertical: 15
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: '700'
+  }
+})
 
 const mapStateToProps = state => {
   const employees = _.map(state.employees, (val, uid) => {
@@ -55,4 +73,4 @@ const mapStateToProps = state => {
   return { employees };
 };
 
-export default connect(mapStateToProps, {employeesFetch})(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
