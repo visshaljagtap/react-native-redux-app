@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -33,53 +33,72 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
-      </Button>
+      <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
+        <Text style={styles.buttonText}>LOGIN</Text>
+      </TouchableOpacity>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <TextInput style={styles.input}
+          autoCapitalize="none"
+          onChangeText={this.onEmailChange.bind(this)}
+          autoCorrect={false}
+          value={this.props.email}
+          keyboardType='email-address'
+          returnKeyType="next"
+          placeholder='Email'
+          placeholderTextColor='rgba(225,225,225,0.7)' />
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+        <TextInput style={styles.input}
+          onChangeText={this.onPasswordChange.bind(this)}
+          value={this.props.password} placeholder='Password'
+          placeholderTextColor='rgba(225,225,225,0.7)'
+          secureTextEntry />
 
         <Text style={styles.errorTextStyle}>
           {this.props.error}
         </Text>
-
-        <CardSection>
           {this.renderButton()}
-        </CardSection>
-      </Card>
+      </View>
     );
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
+  },
+  container: {
+    padding: 20
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(225,225,225,0.2)',
+    marginBottom: 10,
+    padding: 10,
+    color: '#fff'
+  },
+  buttonContainer: {
+    backgroundColor: '#2980b6',
+    paddingVertical: 15
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: '700'
+  },
+  loginButton: {
+    backgroundColor: '#2980b6',
+    color: '#fff'
   }
-};
+
+});
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;

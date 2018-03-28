@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, LayoutAnimation } from 'react-native';
 import { employeesFetch } from '../actions';
 import ListItem from './ListItem';
 
@@ -11,8 +11,8 @@ class EmployeeList extends Component {
     headerLeft: null
   }
   componentWillMount() {
+    LayoutAnimation.spring();
     this.props.employeesFetch();
-
     this.createDataSource(this.props);
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import LoginForm from './components/LoginForm';
+import Login from './components/Login';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
@@ -8,9 +8,9 @@ import { StackNavigator } from 'react-navigation';
 
 const RouterComponent = () => {
   return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene key="auth">
-        <Scene key="login" component={LoginForm} title="Please Login" />
+    <Router>
+      <Scene key="auth" hideNavBar={true}>
+        <Scene key="login" component={Login}  hideNavBar={true}/>
       </Scene>
 
       <Scene key="main">
