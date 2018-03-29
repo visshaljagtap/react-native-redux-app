@@ -2,15 +2,18 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux'
-import { ListView, LayoutAnimation, TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import {
+  ListView,
+  LayoutAnimation,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet
+} from 'react-native';
 import { employeesFetch } from '../actions';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
-  static navigationOptions = {
-    title: "Welcome",
-    headerLeft: null
-  }
   componentWillMount() {
     LayoutAnimation.spring();
     this.props.employeesFetch();
@@ -45,7 +48,7 @@ class EmployeeList extends Component {
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />
-        <TouchableOpacity style={styles.buttonContainer} onPress = {() => Actions.employeeCreate()}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.employeeCreate()}>
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>

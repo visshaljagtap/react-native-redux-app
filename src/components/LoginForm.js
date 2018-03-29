@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 var validators = require('./validators').validators();
@@ -27,15 +28,24 @@ class LoginForm extends Component {
     }
   }
 
+  onSignUpButtonPress(){
+    Actions.signup();
+  }
+
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
 
     return (
-      <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
-        <Text style={styles.buttonText}>LOGIN</Text>
-      </TouchableOpacity>
+      <View>
+        <TouchableOpacity style={styles.buttonContainer} onPress={this.onButtonPress.bind(this)}>
+          <Text style={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.mainButtonContainer} onPress={this.onSignUpButtonPress.bind(this)}>
+          <Text style={styles.buttonText}>SIGN UP</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
@@ -62,7 +72,7 @@ class LoginForm extends Component {
         <Text style={styles.errorTextStyle}>
           {this.props.error}
         </Text>
-          {this.renderButton()}
+        {this.renderButton()}
       </View>
     );
   }
@@ -83,6 +93,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     color: '#fff'
+  },
+  mainButtonContainer: {
+    paddingTop: 10
   },
   buttonContainer: {
     backgroundColor: '#2980b6',

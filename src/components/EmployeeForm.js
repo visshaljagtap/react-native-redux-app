@@ -27,10 +27,10 @@ class EmployeeForm extends Component {
           />
         </CardSection>
 
-        <CardSection style={{ flexDirection: 'column'}}>
+        <CardSection style={{ flexDirection: 'column' }}>
           <Text style={styles.pickerTextStyle}>Shift</Text>
           <Picker
-            style={{ width:100}}
+            style={{ width: 100 }}
             selectedValue={this.props.shift}
             onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value })}
           >
@@ -64,6 +64,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ employeeUpdate: employeeUpdate }, dispatch);
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

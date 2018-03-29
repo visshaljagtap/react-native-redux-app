@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import Login from './components/Login';
+import SingUpForm from './components/SignUpForm'
 import firebase from 'firebase'
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
@@ -11,8 +12,10 @@ const RouterComponent = () => {
   return (
     <Router>
       <Scene key="auth">
-        <Scene key="login" component={Login}  hideNavBar={true}/>
+        <Scene key="login" component={Login} hideNavBar={true} />
       </Scene>
+
+      <Scene key="signup" component={SingUpForm} title="Create User" />
 
       <Scene key="main">
         <Scene
